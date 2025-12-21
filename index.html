@@ -699,12 +699,21 @@
             .style("background-color", "#00114f")
 
         footer.selectAll("div")
-            .data(["Course: Data Visualisation", "Made by: Dražen Antunović", "Faculty of Electrical Engineering, Computer Science and Information Technology, Osijek"])
+            .data([
+                "Course: Data Visualisation",
+                "Made by: Dražen Antunović",
+                "Faculty of Electrical Engineering, Computer Science and Information Technology, Osijek",
+                "The boundary data was acquired at geoboundaries.org"
+            ])
             .enter()
             .append("div")
-                .text((d) => d)
-                .style("margin-bottom", (d, i) => i != 2 ? "30px" : "0")
-                .style("font-size", "1.2rem")
+                .html((d, i) =>
+                    i === 3
+                        ? 'The boundary data was acquired at <a href="https://www.geoboundaries.org" target="_blank" style="color: inherit; text-decoration: underline;">geoboundaries.org</a>'
+                        : d
+                )
+                .style("margin-bottom", (d, i) => i < 3 ? "30px" : "0")
+                .style("font-size", "1.2rem");
 
     </script>
 </body>
